@@ -1,0 +1,6 @@
+Get Milk
+false
+Buy Eggs
+true
+Acquire Sugar
+false

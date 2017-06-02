@@ -1,0 +1,73 @@
+/*Css is based on the screenshot provided in the test pdf file*/
+
+/*For the layout table*/
+table{
+	width:700px;
+	background-color: #E6E6E6;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+	border: 1px solid #E6E6E6;	
+	border-spacing: 0;
+	font-size: 20px;
+}
+/*For the "To Do" above the list*/
+.toDoCell{
+	background-color: cornflowerblue;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	font-size:22px;
+	color:white;
+	padding:8px;
+}
+/*For the checkbox cell*/
+.checkboxCell{
+	width:7px;
+	margin-left:5px;
+}
+/*For the listItem text*/
+.tableItem{
+	width:560px;
+	padding:12px 5px;
+}
+/*Alternates the background of the list*/
+tr:nth-child(even){background-color:#E6E6E6;}
+tr:nth-child(odd){background-color:#F7F7F7;}
+/*For the delete button*/
+.deleteBtn{
+	background-color: indianred;
+	border:none;
+	color:white;
+	padding:5px;
+	font-size:12px;
+	border-radius: 5px;
+	width:45px;
+	height:25px;
+	margin-right:2px;
+	
+	cursor: pointer;	
+}
+/*For the edit button*/
+.editBtn{
+	background-color: cornflowerblue;
+	border:none;
+	color:white;
+	padding:5px;
+	font-size:12px;
+	border-radius: 5px;
+	width:45px;
+	height:25px;
+	margin-right:10px;
+	cursor: pointer;
+}
+/*For the "Add Item" below the list*/
+.addItemCell{
+	background-color:darkseagreen;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+	font-size:20px;
+	color:white;
+	padding:12px;
+	cursor:pointer;
+}
