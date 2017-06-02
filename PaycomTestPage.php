@@ -7,7 +7,9 @@
 	<title>To Do List</title><!--webpage title-->
 </head>
 <body>
-	<!--Webpage written with php. The php starts with the class listItem and sets up the helper methods of the class. The initial data of the webpage is gathered from the file, "ToDoItems.txt",( which could be changed to a database later, for a more ideal To Do list that would keep its state rather than defaulting back to the orginial). Then after some short processing of the data retrieved from the file, the php then creates the initial page layout.--> 
+
+	<!--Webpage written with php. The php starts with the class listItem and sets up the helper methods of the class. The initial data of the webpage is gathered from the file, "ToDoItems.txt",( which could be changed to a database later, for a more ideal To Do list that would keep its state rather than defaulting back to the orginial). Then after some short processing of the data retrieved from the file, the html creates the page--> 
+
 	<?php
 		//This class is for the objects we will be using, get and set methods initialized here		
 		class listItem{
@@ -43,53 +45,45 @@
 			//pushes the new items into the array for the "listItem objects"
 			$itemArray[]=$item;
 		}
-
-		//This half of the php is responsible for creating initial webpage state using the array of "listItem objects"
-
-		//$index variable used as part of the id attribute of the elements to ensure unique id's
-		$index=2;
-
-		//beginning of the layout table html
-		echo"<table id=\"itemTable\">";
-
-		//html for the To Do Cell
-		echo"<tr id=\"1\"><td colspan=\"4\" align=\"center\" class=\"toDoCell\"><b>To Do</b></td></tr>";
-
-			//the for each loop iterates through the array of "listItem" ojects
-			foreach($itemArray as $element){
-
-				//new table row
-				echo"<tr id=\"".$index."\">";
-
-					//The checkbox cell is created and given the completed status of the objects in its value attribute
-					//If completed status is already done("true"), then the checkbox is defaulted to checked state
-					echo"<td class=\"checkboxCell\"><input type=\"checkbox\" class=\"checkBox\" id=\"Checkbox-".$index."\" value=\"".$element->get_completed()."\"".(($element->get_completed() == "true")?" checked='checked'": "")." /></td>";
-
-					//The item cell is created and given the text of the objects to render onto the webpage
-					//If completed status is already done("true"), then the text will be grayed out and striked
-					echo"<td class=\"tableItem\" id=\"Item-".$index."\"".(($element->get_completed() == "true")?"style='text-decoration:line-through; opacity:0.4'": "").">".$element->get_toDoItem()."</td>";
-
-					//The delete button cell, renders the html for the "Delete" button
-					echo"<td><input type=\"button\" class=\"deleteBtn\" id=\"Delete-".$index."\" value=\"Delete\"/></td>";
-
-					//The edit button cell, renders the html for the "Edit" button
-					echo"<td><input type=\"button\" class=\"editBtn\" id=\"Edit-".$index."\" value=\"Edit\" /></td>";
-
-				//end table row
-				echo"</tr>";
-
-				//increment the index to keep the id attributes unique to each row
-				$index++;
-			}	
-
-		//html for the Add Item cell
-		echo"<tr id=\"".$index."\"><td colspan=\"4\" align=\"center\" class=\"addItemCell\">Add Item</td></tr>";
-
-		//end of the layout table html
-		echo"</table>";
 	?>
+	<!--Using a php variable to ensure the table rows have unique id attributes-->
+	<?php $index=2 ?>
+	<!--Beginning of the table HTML-->
+	<table id=itemTable>
+
+		<!--Html for the "To Do" above the item list-->
+		<tr id = "1"><td colspan="4" align="center" class="toDoCell"><b>To Do</b></td></tr>
+
+		<!--Using a php foreach loop for the initial body HTML of the list-->
+		<?php foreach ($itemArray as $element) : ?>
+
+			<!--Table Row-->
+			<tr id="<?php echo $index ?>">
+
+				<!--Html for the checkbox that shows completed status of the item on the list.
+					The php ternary statement decides if the item on the list has already been completed by using the get_completed method of the object, if true defaults to checked-->
+				<td class="checkboxCell"><input type="checkbox" class="checkBox" id="Checkbox-<?php echo $index?>" value="<?php echo $element->get_completed()?>"<?php echo $element->get_completed() == "true" ? "checked='checked'" : "" ?></td>
+
+				<!--Html for the text of the listItem object, uses same ternary statement from the checkbox to determine if the text should be striked and grayed out to represent a completed item-->
+				<td class="tableItem" id="Item-<?php echo $index ?>"<?php echo $element->get_completed() == "true" ? "style='text-decoration:line-through; opacity:0.4'" : "" ?>><?php echo $element->get_toDoItem()?></td>
+
+				<!--Html for the delete button-->
+				<td><input type="button" class="deleteBtn" id="Delete-<?php echo $index ?>" value="Delete" /></td>
+
+				<!--Html for the edit button-->
+				<td><input type="button" class="editBtn" id="Edit-<?php echo $index ?>" value="Edit" /></td>
+
+			</tr><!--end table row-->
+
+			<!--Increment the index count to ensure each row has a unique id-->
+			<?php $index++ ?>
+
+		<?php endforeach; ?><!--ends the foreach loop-->
+		
+		<!--Html for the "Add Item" below the list-->
+		<tr id="<?php echo $index ?>"><td colspan="4" align="center" class="addItemCell">Add Item</td></tr>
+	</table>
 	<script src="jquery-3.2.1.js"></script><!--jquery library-->
 	<script src="app.js"></script><!--the javascript file for the webpage-->
 </body>
 </html>
-
