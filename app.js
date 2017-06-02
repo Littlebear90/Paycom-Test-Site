@@ -45,10 +45,7 @@ var deleteButtonClick = function(){
 	//confirmation messages prompt the user to ensure they really want to delete the item
 	var confirmation = confirm("Are you sure you want to delete \"" + id + "\" from your To Do list?");
 	if(confirmation == true){
-		confirmation=confirm("Are you sure? \""+id+"\" will be deleted!");
-		if(confirmation == true){
-			$(this).closest("tr").remove(); //removes the entire row from the list
-		}
+		$(this).closest("tr").remove(); //removes the entire row from the list
 	}
 };
 
